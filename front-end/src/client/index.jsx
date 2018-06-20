@@ -8,9 +8,9 @@ import { renderRoutes } from 'react-router-config';
 import routes from 'pages/routes';
 import configureStore from 'store';
 
-const initialState = window.__PRELOADED_STATE__;
+const initialState = window.__PRELOADED_STATE__; /* eslint-disable-line no-underscore-dangle */
 
-delete window.__PRELOADED_STATE__;
+delete window.__PRELOADED_STATE__; /* eslint-disable-line no-underscore-dangle */
 
 const store = configureStore(initialState);
 

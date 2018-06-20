@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import fetchPosts from 'actions/post';
 
 class Post extends React.Component {
-  static fetching(store) {
+  static fetching({ store }) {
     return [
       store.dispatch(fetchPosts()),
     ];

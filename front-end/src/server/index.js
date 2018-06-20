@@ -24,8 +24,13 @@ app.get('*', async (req, res) => {
 
   const loadedActions = await Promise.all(actionsTemp);
 
+  const storeAndPath = {
+    store,
+    path: req.path,
+  };
+
   const actions = loadedActions
-    .map(component => (component.fetching ? component.fetching(store) : null))
+    .map(component => (component.fetching ? component.fetching(storeAndPath) : null))
     .map(promises => (
       Promise.all((promises || [])
         .map(p => p && new Promise(resolve => p.then(resolve).catch(resolve))))

@@ -16,7 +16,7 @@ App.propTypes = {
     component: PropTypes.func.isRequired,
     routes: PropTypes.arrayOf(PropTypes.shape({
       component: PropTypes.func.isRequired,
-      path: PropTypes.string.isRequired,
+      path: PropTypes.string,
       exact: PropTypes.bool,
     })).isRequired,
   }).isRequired,

@@ -10,7 +10,6 @@ import reactLoadableStats from 'build/react-loadable';
 import webpackManifestStats from 'build/webpack-manifest';
 
 const htmlRenderer = (req, store) => {
-  console.log(renderRoutes(routes));
   const modules = [];
   const Application = (
     <Loadable.Capture report={module => modules.push(module)}>
@@ -26,7 +25,6 @@ const htmlRenderer = (req, store) => {
   const scripts = bundles.filter(bundle => bundle.file.endsWith('.js'));
   const appBundle = webpackManifestStats['app.js'];
   const vendorsBundle = webpackManifestStats['vendors.js'];
-  console.log(store.getState());
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -41,6 +39,9 @@ const htmlRenderer = (req, store) => {
       ${scripts.map(script => (`<script async src="/javascript/${script.file}"></script>`)).join('\n')}
       <script async src="${vendorsBundle}"></script>
       <script async src="${appBundle}"></script>
+      <script>
+        window.__PRELOADED_STATE__ = ${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}
+      </script>
     </body>
     </html>
   `;

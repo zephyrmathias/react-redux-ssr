@@ -1,11 +1,12 @@
-const fetchPosts = () => ({
-  type: 'FETCH_POSTS',
-  posts: {
-    userId: '123',
-    id: 1,
-    title: 'This is post title',
-    body: 'This is post body',
-  },
-});
+import axios from 'axios';
+import { FETCH_POSTS } from 'actionTypes/post';
+
+const fetchPosts = () => async (dispatch) => {
+  const res = await axios.get('https://jsonplaceholder.typicode.com/posts/1');
+  dispatch({
+    type: FETCH_POSTS,
+    payload: res.data,
+  });
+};
 
 export default fetchPosts;

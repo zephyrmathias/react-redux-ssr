@@ -17,6 +17,10 @@ const AsyncPost = Loadable({
   loading: Loading,
 });
 
+const AsyncNotFound = Loadable({
+  loader: () => import(/* webpackChunkName: 'NotFoundPage' */ 'pages/NotFound'),
+  loading: Loading,
+});
 
 const routes = [
   {
@@ -34,6 +38,9 @@ const routes = [
       {
         component: AsyncPost,
         path: '/post',
+      },
+      {
+        component: AsyncNotFound,
       },
     ],
   },

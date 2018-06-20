@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -7,7 +8,10 @@ import { renderRoutes } from 'react-router-config';
 import routes from 'pages/routes';
 import configureStore from 'store';
 
-const initialState = {};
+const initialState = window.__PRELOADED_STATE__;
+
+delete window.__PRELOADED_STATE__;
+
 const store = configureStore(initialState);
 
 const Application = (
